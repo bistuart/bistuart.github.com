@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+.body{
+	font-size:12px;
+	font-weight:bold;
+	color:#FFF;
+}
+.title{
+	font-size:22px;
+	border-bottom-color:#F60;
+	border-bottom:1px;
+	font-weight: bold;
+	color: #999;
+}
+.info{
+	font-size:14px;
+	color:#FFF;
+	font-weight:bold;
+}
+.info_t{
+	font-size:14px;
+	color:#F90;
+	font-weight:bold;
+}
+.title_box{
+	font:"黑体";
+	font-size:22px;
+	font-weight:bold;
+	color:#999;
+}
+.box{
+	font-size:12px;
+	color:#CCC;
+	padding:5px;
+}
+.box_t{
+	font:"黑体";
+	font-size:18px;
+	font-weight:bold;
+}
+.box_o{
+	color:#F90;
+}

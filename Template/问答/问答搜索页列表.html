@@ -1,0 +1,149 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{@ask.sitetitle}-家具行业答案最全的问答网站-{@class.classname}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">
+			    <div>
+          <script>
+  check=function(){
+   if (document.getElementById('KeyWord').value=='')
+   {
+     alert("对不起,您没有输入关键字!");
+	 return false
+   }
+  }
+  goask=function(){
+   if (document.getElementById('KeyWord').value=='')
+   {
+     alert("对不起,您没有输入关键字!");
+	 return false
+   }else{
+    window.open('a.asp?q='+document.getElementById('KeyWord').value);
+	return false;
+   }
+   
+  }
+        </script>
+          <form action="search.asp" method="post" name="myform" id="myform">
+            <dt>问题搜索
+                <input type="text" name="KeyWord" id="KeyWord" size="20" />
+                  <input type="image" src="{$GetInstallDir}ask/images/ask003.gif" onClick="return(check())" align="absmiddle" />
+                  <input type="image" src="{$GetInstallDir}ask/images/ask004.gif" onClick="return(goask())" align="absmiddle" />
+              </dt>
+          </form>
+        </div>
+	</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<!-- 顶部结束 -->
+
+<div class="ask_main1">
+  <div class="ask_main1_l">
+     <div class="askbutton"><a href="{$GetInstallDir}ask/a.asp"><img src="{$GetInstallDir}ask/images/ask.gif" alt="我要提问"></a></div>
+	 <div class="ask_main1_lbox">
+	   <div class="ask_main1_tit">问题分类</div>
+	   <div class="ask_main1_box">
+	       已解决问题数：<span class="askjjnum">{@ask.resolvednum}</span>条<br />
+             待解决问题数：<span class="asknum">{@ask.unresolvednum}</span>条
+			 <div class="clear"></div>
+			<hr size=1 color="#B6D3EB">
+			<dl id=leftCategory>{@ask.menulist}</dl>
+	   </div>
+	 </div>
+  </div>
+  <div class="ask_main1_twr">
+     <div class="position"><ul>当前位置：<a href="{$GetInstallDir}">科汛网络开发</a> &gt; <a href="index.asp">问吧首页</a> {@search.shownav} </ul></div>
+	
+	  <div class="askad"><img src="{$GetInstallDir}ask/images/askad.gif"></div>
+
+     <div class="ask_tiwen">
+	       
+		  <div class="keyword">关键字:"{@search.keyword}",共找到几<font color=red><B>{@search.totalnum}</B></font>个问题  </div> 
+             <table width="100%" border="0" align="center" cellpadding="2" cellspacing="2">
+                      <tr>
+                      <td align="center" width="220" bgcolor="#C5E8FC" height="30"><strong>标题</strong></td>
+                      <td width="80" align="center" bgcolor="#C5E8FC"><strong>回答数</strong></td>
+                      <td width="80" align="center" bgcolor="#C5E8FC"><strong>状态</strong></td>
+                      <td width="120" align="center" bgcolor="#C5E8FC"><strong>提问人</strong></td>
+                      <td align="center" width="80" bgcolor="#C5E8FC"><strong>提问时间</strong></td>
+                    </tr>
+                    {@topiclist.begin}
+					  <tr>
+						<td style="padding-left:10px;font-size:14px;"><a target="_blank" href="q.asp?id={@topic.topicid}">{@topic.title}</a>{@topic.reward}</td>
+						<td align="center">{@topic.postnum}</td>
+						<td align="center"><img src="{$GetInstallDir}ask/images/ask{@topic.status}.gif" width="17" height="20" /></td>
+						<td align="center"><font color="red">{@topic.username}</font></td>
+						<td  style="padding-left:10px" align="left">{@topic.time}</td>
+					  </tr>
+                    {@topiclist.end}
+					
+					<tr>
+						<td colspan="5">{@foot.showpage}</td>
+				    </tr>
+            </table>
+                            				
+	 </div>
+  </div>
+
+</div>
+
+<div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

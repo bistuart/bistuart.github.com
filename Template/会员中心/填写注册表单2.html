@@ -1,0 +1,60 @@
+﻿<html>
+<head><title>{$GetSiteName}-新会员注册</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="../images/css.css" type=text/css rel=stylesheet>
+<script src="../../ks_inc/jquery.js" type="text/javaScript"></script>
+<style type="text/css">
+.st{background:url(/user/images/step.gif) no-repeat 0 -60px;height:61px;width:940px;margin-top:20px;margin-bottom:20px}
+</style>
+
+</head>
+<body>
+
+<!-- head begin -->
+<div class="head">
+  <div id="head">
+  <div id="head_left"><a href="http://www.kesion.com"><img alt="kesioncms" src="../images/logo.jpg" /></a></div>
+  <div id="head_right">
+	  <li><a href="{$GetSiteUrl}">首页</a>┊</li><li><a href="{$GetSiteUrl}user/?user_Contributor.asp">匿名投稿</a>┊</li><li><a href="../login" target="main">登录</a>┊</li><li><a href="http://bbs.kesion.com" target="main">帮助</a></li>
+  </div>
+  </div>
+</div>
+<!-- head end -->
+
+
+ <div id="regmain">
+			<div class="regbox">
+                 <div class="st"></div>
+			     <div id="regtop"></div>
+				 <div id="regcenter">
+						 <div class="st1">如果您已经是会员请<a href="../login/" target="_blank">登录</a>,(带<font color="red">*</font>号的必须填写)</div>
+						 
+				         <table  width="700" border="0" align="center" cellpadding="2" cellspacing="2">
+                        <form action="UserRegResult.asp" name="regform" method="post">
+                          <tr>
+                            <td> {$ShowRegForm} </td>
+                          </tr>
+                          <tr>
+                            <td align="center">
+							 <input type="submit" name="submit1" value="OK! 提交注册" class="button">
+                             </td>
+                          </tr>
+                        </form>
+                      </table>
+		           </div>
+				  <div id="regbottom"></div>
+		 </div>
+
+			
+	 <div class="foot"> <p style="color:#999999;text-align:center">
+   北信艺术工坊版权所有 2006-2010</div>
+	</div>
+         
+</body>
+</html>
+
+
+
+
+
+

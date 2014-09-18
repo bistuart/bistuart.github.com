@@ -1,0 +1,31 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetClassName}">
+<p>
+{$GetReadMessage}
+【最新图片】<br/>
+{$GetRandomPhotoText(60,60,False,30,2,2,False)}
+{$GetShowClassList(4,,<br/>,5,30)}
+【搜索图片】<br/>
+<input name="KeyWord" type="text" value=""/>
+<anchor>搜索<go href="Plus/Search.asp?{$WapValue}" method="post">
+<postfield name="ChannelID" value="{$GetChannelID}"/>
+<postfield name="KeyWord" value="$(KeyWord)"/>
+</go></anchor>
+<anchor>编号下载<go href="Plus/PlaitDownLoad.asp?{$WapValue}" method="post">
+<postfield name="ChannelID" value="{$GetChannelID}"/>
+<postfield name="KeyWord" value="$(KeyWord)"/>
+</go></anchor>
+<br/>
+
+【图片分类】<br/>
+{$GetClassList(2,|)}
+--------<br />
+{$GetLocation}<br/>
+{$GetCopyRight}{$GetWriteinReturn(<a href="{$GetUrl}">手机图片</a>)}
+</p>
+</card>
+</wml>

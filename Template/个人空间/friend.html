@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>找朋友</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<script src="../../ks_inc/jquery.js" type="text/javascript"></script> 
+<script src="../../ks_inc/kesion.box.js"></script>
+<script type="text/javascript">
+		 function checkmsg()
+		 {
+		     var message=escape($("#message").val());
+			 var username=escape($("#username").val());
+			 if (username==''){
+			  alert('参数传递出错!');
+			  closeWindow();
+			 }
+			 if (message==''){
+			   alert('请输入消息内容!');
+			   $("#message").focus();
+			   return false;
+			 }
+			 $.get("../../plus/ajaxs.asp",{action:"SendMsg",username:username,message:message},function(r){
+			   r=unescape(r);
+			   if (r!='success'){
+				alert(r);
+			   }else{
+				 alert('恭喜，您的消息已发送!');
+				 closeWindow();
+			   }
+			 });
+         }
+		 function sendMsg(ev,username)
+		 {
+		  mousepopup(ev,"<img src='../../images/user/mail.gif' align='absmiddle'>发送消息","对方登录后可以看到您的消息(可输入255个字符)<br /><textarea name='message' id='message' style='width:340px;height:80px'></textarea><div style='text-align:center;margin:10px'><input type='button' onclick='return(checkmsg())' value=' 确 定 ' class='button'><input type='hidden' value="+username+" name='username' id='username'> <input type='button' value=' 取 消 ' onclick='closeWindow()' class='button'></div>",350);
+		  $.get("../../plus/ajaxs.asp",{action:"CheckLogin"},function(r){
+		   if (r!='true'){
+			 ShowLogin();
+			}
+		   });
+		 }
+        function check()
+		{
+		 var message=escape($("#message").val());
+		 var username=escape($("#username").val());
+		 if (username==''){
+		  alert('参数传递出错!');
+		  closeWindow();
+		 }
+		 if (message==''){
+		   alert('请输入附言!');
+		   $("#message").focus();
+		   return false;
+		 }
+		 $.get("../../plus/ajaxs.asp",{action:"AddFriend",username:username,message:message},function(r){
+		   r=unescape(r);
+		   if (r!='success'){
+		    alert(r);
+		   }else{
+		     alert('您的请求已发送,请等待对方的确认!');
+			 closeWindow();
+		   }
+		 });
+		}
+		function addF(ev,username)
+		{ 
+		 show(ev,username);
+		 var isMyFriend=false;
+		 $.get("../../plus/ajaxs.asp",{action:"CheckMyFriend",username:escape(username)},function(b){
+		    if (b=='nologin'){
+			  closeWindow();
+			  ShowLogin();
+			}else if (b=='true'){
+			  closeWindow();
+			  alert('用户['+username+']已经是您的好友了！');
+			  return false;
+			 }else if(b=='verify'){
+			  closeWindow();
+			  alert('您已邀请过['+username+'],请等待对方的认证!');
+			  return false;
+			 }else{
+			 }
+		 })
+		 
+		}
+		function show(ev,username)
+		{
+		 mousepopup(ev,"<img src='../../images/user/log/106.gif'>添加好友","通过对方验证才能成为好友(可输入255个字符)<br /><textarea name='message' id='message' style='width:340px;height:80px'></textarea><div style='text-align:center;margin:10px'><input type='button' onclick='return(check())' value=' 确 定 ' class='button'><input type='hidden' value="+username+" name='username' id='username'> <input type='button' value=' 取 消 ' onclick='closeWindow()' class='button'></div>",350);
+		}
+		function ShowLogin()
+		{ 
+		 popupIframe('会员登录','../../user/userlogin.asp?Action=Poplogin',397,184,'no');
+		}	
+			 
+$(document).ready(function(){
+  var today=new Date();
+  for(i=1950;i<=today.getYear();i++){
+   $("#birth_y").append("<option value='"+i+"'>"+i+"</option>");
+  }
+  for(i=1;i<=12;i++){
+   $("#birth_m").append("<option value='"+i+"'>"+i+"</option>");
+  }
+  for(i=1;i<=31;i++){
+   $("#birth_d").append("<option value='"+i+"'>"+i+"</option>");
+  }
+  $("#Province").css("width","90px");
+  $("#City").css("width","70px");
+  query.param=location.search.replace('?','');
+  query.showload();
+  query.page(1);
+});
+var query={
+  showload:function(){
+    $("#searchresult").html('<br/><br/><table cellSpacing=0 align=center cellPadding=0 border=0><tr><td vAlign=center width=427 background=images/nodate_i.gif height=122><table width="92%" align=center border=0><tr><td style="font-weight: bold; FONT-SIZE: 14px; COLOR: #ff6402" vAlign=center align=middle height=31><SPAN style="FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff6402"><img height=16 src="{$GetSiteUrl}space/friend/images/loading_16x16.gif" width=16>查找结果中。。。</SPAN></td></tr></table></td></tr></table>');
+  },
+  run:function()
+  { this.showload();
+    this.province=$('#Province').val();
+	this.city=$("#City").val();
+	this.sex=$("#sex").val();
+	this.birth_y=$("#birth_y").val();
+	this.birth_m=$("#birth_m").val();
+	this.birth_d=$("#birth_d").val();
+	this.realname=$("#realname").val();
+	this.param="province="+escape(this.province)+"&city="+escape(this.city)+"&sex="+escape(this.sex)+"&birth_y="+this.birth_y+"&birth_m="+this.birth_m+"&birth_d="+this.birth_d+"&realname="+escape(this.realname);
+	this.page(1);
+  },
+  page:function(p){ 
+	  $.ajax({
+	   type: "POST",
+	   url: "../../plus/ajaxs.asp",
+	   data: "action=SearchUser&page="+p+"&"+this.param,
+	   success: function(result){
+		 $("#searchresult").html(unescape(result));
+	   }
+	});
+  }
+}
+</script>
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">{$GetSearch}</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<!-- 顶部结束 -->
+<div class="xinwenbg">
+  <div class="xinwen">空间分类 Space</div>
+  <div class="xiazaidh">
+      <ul>
+		    <li><a href="{$GetSiteUrl}space">首页</a></li>
+			<li><a href="{$GetSiteUrl}space/morespace.asp">空间</a></li>
+			<li><a href="{$GetSiteUrl}space/moregroup.asp">群组</a></li>
+			<li><a href="{$GetSiteUrl}space/morelog.asp">日志</a></li>
+			<li><a href="{$GetSiteUrl}space/morephoto.asp">相册</a></li>
+			<li><a href="{$GetInstallDir}ask">提问</a></li>
+		</ul>
+	</div>
+</div>
+<div class="clear"></div>
+
+
+<div class="spacemain">
+  <div class="spacemain_left">
+     <div class="spacemain_left_1">
+	     <div class="spacemain_lefttit">活跃会员</div>
+		<div class="spaceuserbox"><ul>{=GetTopUser(12,...)}</ul></div>
+	 </div> 
+      <div class="clear"></div>
+	 <div class="spacemain_l_2">
+	    <div class="spacemain_lefttit">找朋友</div>
+		<div class="spacebox">
+		  <table cellspacing="0" cellpadding="3" width="95%" align="center" border="0">
+        
+        <tr>
+          <td height="30" colspan="2" align="left">我要找
+            <script src="../../plus/area.asp" type="text/javascript"></script></td>
+        </tr>
+        <tr>
+          <td height="30" colspan="2" align="left">出生
+            <select id="birth_y" name="birth_y" style="width:50px">
+              <option value="" selected="selected">年</option>
+            </select>
+            <select id="birth_m" name="birth_m" style="width:50px">
+              <option value="" selected="selected">月</option>
+            </select>
+            <select id="birth_d" name="birth_d" style="width:50px">
+              <option value="" selected="selected">日</option>
+            </select></td>
+          </tr>
+        <tr>
+          <td height="30" align="left">姓名
+            <input id="realname" size="12" name="realname" /></td>
+          <td width="69" height="30" rowspan="2"><input name="button" type="image" src="{$GetSiteUrl}space/friend/images/button_search.gif" class="putin" onclick="query.run();" />            </td>
+        </tr>
+        <tr>
+          <td width="142" height="30" align="left">性别
+            <select id="sex" name="sex">
+              <option value="" selected="selected">-不限</option>
+              <option value="男">男生</option>
+              <option value="女">女生</option>
+            </select></td>
+          </tr>
+        <tr>
+          <td colspan="2" height="8"></td>
+        </tr>
+      </table>
+	 </div>
+	 </div>
+	 
+	 <div class="spacemain_left_2">
+	      <div class="spacemain_lefttit">他们在做什么</div>
+		<div class="space_box"><ul>{=GetUserDynamic(10)}</ul></div>
+	 </div> 
+	 
+  </div>
+  <div class="spacemain_right">
+    <div class="spacemain_tit">查看哪些人在线</div>
+     <div class="spacemain_box">
+	     <div id="searchresult"></div>
+	 </div>
+  </div>
+</div>
+
+ <div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pk－{$GetSiteName}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<meta name="robots" content="all" />
+<script src="/ks_inc/dialog/dialog.js"></script>
+<script src="/ks_inc/jquery.js"></script>
+<script src="jquery.bindto.js"></script>
+<script type="text/javascript">
+ var pkid={$GetPKID};
+ var isLogin=false;
+ function CheckLogin()
+ {
+    if (isLogin==true) return;
+     $.ajax({
+			  url: "pkajax.asp",
+			  cache: false,
+			  data: "action=checklogin&id=" + pkid,
+			  success: function(r){
+			        r=unescape(r);
+				  	var arrobj=r.split('|');
+					if (arrobj[0]!="success")
+					{
+						if (arrobj[0]=="login")
+						{
+						  showlogin();
+						}else{
+						Alert(arrobj[0],arrobj[1],arrobj[2]);
+						}
+					}else{
+					  isLogin=true;
+					}
+					
+			  }
+			  });
+
+ }
+function showlogin(){
+    popCoverDiv();
+    var oDialog = new dialog("/");
+	oDialog.init();
+	oDialog.set('title',"登录窗口");
+	oDialog.set('src',"images/login.png");
+	oDialog.set('width',"400px");
+	oDialog.set('height',"200px");
+	oDialog.open('/user/userlogin.asp?Action=Poplogin' ,'no');
+	oDialog.button('dialogOk',"frames['sloginframe'].CheckForm()");
+	oDialog.button('dialogCancel',"$$('cover_div').style.display = 'none'");
+	oDialog.button('dialogClose',"$$('cover_div').style.display = 'none'");
+}
+function submitCheck(role){
+ var content=''
+ if (role==1)
+ {
+    if (jQuery("#agreeContent").val()=='')
+	{
+	   Alert(1,"请输入您的想法!",null);
+	   jQuery("#agreeContent").focus();
+	   return;
+	}
+	content=jQuery("#agreeContent").val();
+ }else if(role==2){
+    if (jQuery("#argueContent").val()=='')
+	{
+	   Alert(1,"请输入您的想法!",null);
+	   jQuery("#argueContent").focus();
+	   return;
+	}
+	content=jQuery("#argueContent").val();
+ }else{
+    if (jQuery("#otherContent").val()=='')
+	{
+	   Alert(1,"请输入您的想法!",null);
+	   jQuery("#otherContent").focus();
+	   return;
+	}
+	content=jQuery("#otherContent").val();
+ }
+   $.ajax({
+			  url: "pkajax.asp",
+			  cache: false,
+			  data: "action=savepost&id=" + pkid+"&content="+escape(content)+"&role="+role,
+			  success: function(r){
+			      r=unescape(r);
+				  var arrobj=r.split('|');
+				  if (arrobj[0]!="success")
+				  {
+				    	if (arrobj[0]=="login")
+						{
+						  showlogin();
+						}else{
+						Alert(arrobj[0],arrobj[1],arrobj[2]);
+						}
+				  }else{
+				      Alert(1,"恭喜,您的观点提交成功!",null);
+					  setpkimg();
+					  setpkgdlist();
+					  jQuery("#agreeContent").val('');
+					  jQuery("#argueContent").val('');
+					  jQuery("#otherContent").val('');
+				  }
+			  }
+	});
+	
+
+}
+
+//设置PK图片显示
+function setpkimg() {
+	var agreeNum = 0;
+	var argueNum = 0;
+	 
+	  $.ajax({
+			  url: "pkajax.asp",
+			  cache: false,
+			  data: "action=getvotes&id=" + pkid,
+			  success: function(r){
+			    r=unescape(r)
+				var arr=r.split('|');
+			   agreeNum=parseInt(arr[0]);
+			   argueNum=parseInt(arr[1]);
+				$("#agreenum").html(agreeNum+"人支持");
+				$("#arguenum").html(argueNum+"人支持");
+			
+				var total = agreeNum + argueNum;
+				var h3Width = 70;
+				var imgAgreeSpan = imgArgueSpan = 300;
+				var imgAgree = imgArgue = imgAgreeSpan + h3Width;
+				
+				if (total != 0)	{
+					var totalSpan = imgAgreeSpan * 2;
+					imgAgreeSpan = Math.round(agreeNum / total * totalSpan);
+					imgAgree = imgAgreeSpan + h3Width;
+					imgArgueSpan = totalSpan - imgAgreeSpan;
+					imgArgue = imgArgueSpan + h3Width;
+				}
+			
+				$("#pk_yes").css("width", imgAgree);
+				$("#pk_no").css("width", imgArgue);
+				$("#img_agree").css("width", imgAgreeSpan);
+				$("#img_argue").css("width", imgArgueSpan);			  
+			  }
+      });
+
+
+
+}
+
+function Alert(src,msg,act)
+{
+	var oDialog = new dialog("/");
+	oDialog.init();
+	oDialog.set('src',src);
+	oDialog.event(msg,'');
+	oDialog.button('dialogOk',act);
+}
+function setpkgdlist()
+{
+	$.getScript("pkajax.asp?action=getgdlist&role=1&id="+pkid);
+	$.getScript("pkajax.asp?action=getgdlist&role=2&id="+pkid);
+	$.getScript("pkajax.asp?action=getgdlist&role=3&id="+pkid);
+
+}
+function showagree(commentJsonVarStr___){
+	data=formattime(commentJsonVarStr___);
+	if (data.comments != null) {
+		//绑定模板
+		var node = $($(".agreetpl").html()).bindTo(data);
+		//显示
+		$("#agreecomm").html(node);
+	}
+		
+}
+
+function showargue(commentJsonVarStr___){
+	data=formattime(commentJsonVarStr___);
+	if (data.comments != null) {
+		//绑定模板
+		var node = $($(".arguetpl").html()).bindTo(data);
+		//显示
+		$("#arguecomm").html(node);
+	}
+}
+
+function showother(commentJsonVarStr___){
+	data=formattime(commentJsonVarStr___);
+	if (data.comments != null) {
+		//绑定模板
+		var node = $($(".othertpl").html()).bindTo(data);
+		//显示
+		$("#othercomm").html(node);
+	}
+}
+
+
+
+//格式化时间
+function formattime(data){
+	var str = null;
+	if (data.comments != null) {
+		for(i=0; i<data.comments.length;i++) {
+			str = /^(\d+)\-(\d+)\-(\d+)(?:\s+(\d+):(\d+)(?::(\d+))?)?$/.exec(data.comments[i]['comment_date']);
+			data.comments[i]['comment_date'] = str[1]+'/'+str[2]+'/'+str[3]+' '+str[4]+':'+str[5];
+		}
+	}
+	return data;
+}
+
+$(document).ready(function(){
+	setpkimg();
+	setpkgdlist();
+});
+
+ 
+</script>
+<style type="text/css">
+.box_left{ float:left; width:370px; padding-left:15px;}
+.box_right{ float:right; width:370px; padding-right:15px;}
+.pk_box{ width:830px;margin:0px auto;background:#fff;}
+.pk_box02{ width:930px; margin:0px auto;background:#fff;}
+
+.title02 { width:100%; padding:16px 0; text-align:center}
+.title02 h3{ font-size:14px;color:#2b2b2b; }
+
+
+.box01{ margin:6px auto 22px auto; width:740px; height:20px; }
+#pk_yes{ float:left; width:370px; padding-top:4px;}
+#pk_yes h3{ float:left; width:70px;  font-weight:normal; text-align:center; color:#2b2b2b}
+#pk_yes span{ float:left; width:300px; height:11px; background:url(images/icon_yes.gif) repeat-x}
+#pk_no{ float:right; width:370px;padding-top:4px;}
+#pk_no h3{ float:left; width:70px;font-weight:normal; text-align:center;color:#2b2b2b}
+#pk_no span{ float:left; width:300px; height:11px; background:url(images/icon_no.gif) repeat-x}
+
+textarea.textLogin{ color:#666; font-size:12px;margin:13px 0 0 16px; width:314px; height:51px; border:1px #d5d5d5 solid;}
+.input02{width:720px; height:60px; margin-top:18px;margin-left:15px;}
+.content01{ padding:12px 0 10px 0; }
+.content01 p{ line-height:20px; word-break:break-all;word-wrap:break-word;overflow:hidden;}
+.more{ margin:0 auto 10px auto; padding-bottom:8px; width:750px; height:26px;  background:url(images/pk_line.gif) repeat-x bottom}
+.more span{ float:right;width:60px; height:26px; line-height:26px; text-align:right;  }
+.more span a{ line-height:20px;color:#004276;}
+.pkmain{ width:946px; margin:0px auto; margin-top:10px; border:#0B7CC0 2px solid;}
+.pktitle{ background:url(images/sbox2b.jpg); height:44px; overflow:hidden; text-align:center; font-size:14px; font-weight:bold; color:#fff; line-height:44px;}
+.groundnews{ padding:8px;text-align:right;font-weight:bold;font-size:16px;}
+.groundnews a{color:#006699}
+.pkzff{}
+.pk_left{width:305px; float:left; text-align:left; line-height:25px; font-size:14px; padding-left:50px;}
+.pk_middle{width:130px; float:left; text-align:center; padding-left:50px;}
+.pk_right{width:305px; float:right; text-align:left; line-height:25px; font-size:14px; padding-right:50px;}
+.f14{ font-size:14px; color:#006699; font-weight:bold;}
+.pk_pl{ width:930px; margin:0px auto; margin-top:10px;}
+
+
+</style>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="/User/index.asp">会员中心</a></li>
+			<li><a href="/company">企业黄页</a></li>
+			<li><a href="/music">音乐系统</a></li>
+			<li><a href="/shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="/club/index.asp">互动交流</a></li>
+			<li><a href="/User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="/product">产 品 库</a></li>
+			<li><a href="/space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="/">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">{$GetSearch}</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+
+<div class="pkmain">
+    <div class="pktitle">{$GetPKTitle}</div>
+	<div class="groundnews">{$GetBackGroundNews}</div>
+	<div class="clear"></div>
+	<div class="pkzff">
+	    <div class="pk_left"><img src="images/pk_zf.gif" width="17" height="17" align="absmiddle" /> <span class="f14">正方</span><br />{$GetZFTips}</div>
+		<div class="pk_middle">
+		  <img src="images/pk_pk.gif" width="88" height="127" />
+		</div>
+		<div class="pk_right"><img src="images/pk_ff.gif" width="17" height="17" align="absmiddle" /><span class="f14"> 反方</span><br />{$GetFFTips}</div>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="box01">
+		<div id="pk_yes"><h3 id="agreenum">0人支持</h3><span id="img_agree"></span></div>
+		<div id="pk_no"><span id="img_argue"></span><h3 id="arguenum">0人支持</h3></div>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<table width="930" height="55" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="17">&nbsp;</td>
+          <td width="447" valign="top">
+		  
+		  <table width="350" height="149" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="28" valign="bottom"><img src="images/pk_zczf.gif" width="107" height="28" /></td>
+            </tr>
+            <tr>
+              <td height="80" valign="top" style="background: url(images/pk_input_bj.gif) no-repeat top"><textarea name="agreeContent" id="agreeContent" class="textLogin" onclick="CheckLogin()" /></textarea></td>
+            </tr>
+            <tr>
+              <td height="38" align="center"><a href="#" onclick="submitCheck(1);return false;" /><img src="images/pk_button_tj.gif" width="70" height="23" border="0" /></a></td>
+            </tr>
+          </table>
+	      </td>
+          <td width="40">&nbsp;</td>
+          <td width="426" valign="top">
+		   <table width="350" height="149" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="28" valign="bottom" align="right"><img src="images/pk_zcff.gif" width="107" height="28" /></td>
+            </tr>
+            <tr>
+              <td height="80" valign="top" style="background: url(images/pk_input_bj02.gif) no-repeat top"><textarea name="argueContent" id="argueContent" class="textLogin" onclick="CheckLogin()"/></textarea></td>
+            </tr>
+            <tr>
+              <td height="38" align="center"><a href="#" onclick="submitCheck(2);return false;"/><img src="images/pk_button_tj.gif" width="70" height="23" border="0" /></a></td>
+            </tr>
+          </table></td>
+          
+        </tr>
+  </table>
+	
+
+		<div class="clear"></div>
+		
+		
+	<div class="pk_pl">
+	      <div class="pk_box">
+
+					<div class="box_left">
+					
+					<!--支持模板-->
+									<div class="agreetpl" style="display:none">
+									<!--data-->
+									<!--comments-->
+										  <table width="100%" height="86" border="0" cellpadding="0" cellspacing="0" bgcolor="#eeeeee" style="margin-top:10px;" >
+											<tr>
+											  <td width="3%" height="20"></td>
+											  <td width="93%" height="20" class="Agray"><span class="red">【{uname}】</span> {client_ip}&nbsp;&nbsp;发表：{comment_date} </td>
+											  <td width="4%"></td>
+											</tr>
+											<tr>
+											  <td height="59" bgcolor="#ffffff">&nbsp;</td>
+											  <td width="93%" valign="top" bgcolor="#ffffff"><div class="content01"><p>{comment_contents}</p></div></td>
+											  <td width="4%" bgcolor="#ffffff">&nbsp;</td>
+											</tr>
+										  </table>
+									<!--comments-->
+									<!--data-->
+									</div>
+									<!--支持模板结束-->
+					
+					
+					<!--显示支持-->
+									<div id="agreecomm_nopass"></div>
+									<div id="agreecomm"></div>
+					
+								  <table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" bgcolor="#eeeeee" >
+									<tr>
+									  <td align="right"><a href="more.asp?pkid={$GetPKID}&role=1" target="_blank" class="Agray">更多>></a></td>
+									</tr>
+								  </table>
+					</div>
+					  <div class="box_right">
+				
+							<!--反对模板-->
+							<div class="arguetpl" style="display:none">
+							<!--data-->
+							<!--comments-->
+								  <table width="100%" height="86" border="0" cellpadding="0" cellspacing="0" bgcolor="#eeeeee" style="margin-top:10px;" >
+									<tr>
+									  <td width="3%" height="20"></td>
+									  <td width="93%" height="20" class="Agray"><span class="Agreen">【{uname}】</span> {client_ip}&nbsp;&nbsp;发表：{comment_date} </td>
+									  <td width="4%"></td>
+									</tr>
+									<tr>
+									  <td height="59" bgcolor="#ffffff">&nbsp;</td>
+									  <td width="93%" valign="top" bgcolor="#ffffff"><div class="content01"><p>{comment_contents}</p></div></td>
+									  <td width="4%" bgcolor="#ffffff">&nbsp;</td>
+									</tr>
+								  </table>
+							<!--comments-->
+							<!--data-->
+							</div>
+				<!--反对模板结束-->
+				
+				<!--显示反对-->
+							<div id="arguecomm_nopass"></div>
+							<div id="arguecomm"></div>
+				
+								<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" bgcolor="#eeeeee" >
+								  <tr>
+									<td align="right"><a href="more.asp?pkid={$GetPKID}&role=2" target="_blank" class="Agray">更多&gt;&gt;</a></td>
+								  </tr>
+								</table>
+					  </div>
+</div>
+
+
+	</div>
+	
+	<div class="pk_box02">
+	<div class="title02">
+		<a name="other_a"></a> <h3><img src="images/pk_kg.gif" width="17" height="17" align="absmiddle" /> 第三方观点</h3>
+	</div>
+	  <table width="755" height="152" border="0" align="center" cellpadding="0" cellspacing="0" style=" background:url(images/pk_kg_bj.gif) no-repeat">
+		<tr>
+		  <td width="757" height="118"><textarea name="otherContent" onclick="CheckLogin()" id="otherContent" class="input02"></textarea></td>
+		</tr>
+		<tr>
+		  <td valign="top">
+		  <table width="753" height="44" border="0" cellpadding="0" cellspacing="0">
+			  <tr>
+				<td width="619" height="44">&nbsp;</td>
+				<td width="27"></td>
+				<td width="41"></td>
+				<td width="66"><a href="#" onclick="submitCheck(3);return false;" /><img src="images/pk_button_tj.gif" width="70" height="23" border="0" /></a></td>
+			  </tr>
+		  </table>
+		  </td>
+		</tr>
+	  </table>
+
+<!--第三方模板-->
+		<div class="othertpl" style="display:none">
+		<!--data-->
+		<!--comments-->
+		  <table width="100%" height="104" border="0" cellpadding="0" cellspacing="0" bgcolor="#f3f3f3" style="margin-top:10px;" >
+			<tr>
+			  <td width="1%" height="20">&nbsp;</td>
+			  <td width="97%" class="Agray"><span class="Ayellow">【{uname}】</span> {client_ip}&nbsp;&nbsp;发表：{comment_date}</td>
+			  <td width="2%">&nbsp;</td>
+			</tr>
+			<tr>
+			  <td height="59" bgcolor="#ffffff">&nbsp;</td>
+			  <td width="97%" valign="top" bgcolor="#ffffff"><div class="content01">
+				  <p>{comment_contents} </p>
+			  </div></td>
+			  <td width="2%" bgcolor="#ffffff">&nbsp;</td>
+			</tr>
+		  </table>
+		<!--comments-->
+		<!--data-->
+		</div>
+<!--第三方模板结束-->
+
+<!--显示第三方-->
+		<div id="othercomm_nopass"></div>
+		<div id="othercomm"></div>
+
+  <table width="830" height="22" border="0" cellpadding="0" cellspacing="0" bgcolor="#eeeeee" >
+    <tr>
+      <td width="756" align="right"><a href="more.asp?pkid={$GetPKID}&role=3" target="_blank" class="Agray">更多&gt;&gt;</a></td>
+    </tr>
+  </table>
+</div>
+
+
+	
+</div>
+
+</div>
+
+<div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

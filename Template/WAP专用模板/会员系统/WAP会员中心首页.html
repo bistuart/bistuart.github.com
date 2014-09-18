@@ -1,0 +1,51 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetSiteName}-我的地盘">
+<p>
+<img src="Images/logo.gif" alt="我的地盘"/><br/>
+{$GetReadMessage}
+{$GetUserBasicInfo}
+
+<a href="User_Message.asp?{$WapValue}">短消息服务</a><br/>
+<a href="User_Favorite.asp?{$WapValue}">我的收藏夹</a><br/>
+
+<a href="User_MyComment.asp?{$WapValue}">我的评论</a>
+<a href="User_Files.asp?{$WapValue}">文件管理</a>
+<br/>
+【我的空间】<br/>
+{$GetSpaceMenu}
+<br/>
+【财务管理】<br/>
+<a href="User_ExChange.asp?Action=TypePoint&amp;{$WapValue}">兑换点券</a>
+<a href="User_ExChange.asp?Action=ShowMoney&amp;{$WapValue}">兑换资金</a>
+<a href="User_ExChange.asp?Action=TypeEdays&amp;{$WapValue}">兑换有效期</a><br/>
+
+【商城管理】<br/>
+<a href="../shop/ShoppingCart.asp?{$WapValue}">我的购物车</a>
+<a href="User_Order.asp?{$WapValue}">我的订单</a><br/>
+<a href="User_LogEdays.asp?{$WapValue}">有效期明细</a>
+<a href="User_LogMoney.asp?{$WapValue}">资金明细</a>
+<a href="User_LogPoint.asp?{$WapValue}">点券明细</a><br/>
+<br/>
+
+<a href="User_FeedBack.asp?{$WapValue}">投诉建议</a><br/>
+<select value="0">
+<option>快速通道 </option>
+<option onpick="User_Message.asp?Action=new&amp;{$WapValue}">发送短信</option>
+<option onpick="User_Blog.asp?Action=Add&amp;{$WapValue}">发表日志</option>
+<option onpick="User_Photo.asp?{$WapValue}">我的相册</option>
+<option onpick="User_Team.asp?{$WapValue}">我的圈子</option>
+<option onpick="User_Class.asp?Action=Add&amp;{$WapValue}">创建专栏</option>
+<option onpick="User_Friend.asp?{$WapValue}">我的好友</option>
+<option onpick="UserList.asp?{$WapValue}">所有会员</option>
+</select>
+<br/>
+
+<a href="UserLogout.asp?{$WapValue}">安全退出</a><br/>
+{$GetGoBackIndex}			
+</p>
+</card>
+</wml>

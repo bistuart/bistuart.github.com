@@ -1,0 +1,18 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetSiteName}">
+<p align="left">
+标签<b>{$TagsName}</b>,共找到<b>{$ShowTotal}</b>条相关信息。<br/>
+[loop]
+<a href="{$Url}">{$Title}({$Hits})</a><br/>
+[/loop]
+{$PageStr}<br/>
+--------<br/>
+{$GetGoBackIndex}<br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

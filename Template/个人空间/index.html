@@ -1,0 +1,113 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>空间门户首页-{$GetSiteName}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">{$GetSearch}</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<!-- 顶部结束 -->
+<div class="xinwenbg">
+  <div class="xinwen">空间分类 Space</div>
+  <div class="xiazaidh"><ul>{LB_空间分类}</ul></div>
+</div>
+<div class="clear"></div>
+
+<div class="spacemain">
+   <div class="spacemain_l">
+      <div class="spacemain_l_1">{SQL_博客_相片幻灯()}</div>
+      <div class="spacemain_l_2">
+	      <div class="spacemain_tit">空间最新动态</div>
+		  <div class="spacebox"><ul>{LB_空间最新动态}</ul></div>
+	  </div>
+   </div>
+   <div class="spacemain_m"><ul>{LB_博客精华}</ul></div>
+   <div class="spacemain_r">
+       <div class="spacemain_l_1">
+	      <div class="spacemain_tit"><span class="more"><a href="{$GetInstallDir}space/morespace.asp">更多>></a></span>最新入驻空间</div>
+		  <div class="spacebox"><ul>{LB_最新入驻空间}</ul></div>
+	  </div>
+	  <div class="clear"></div>
+	  <div class="spacemain_l_2">
+	      <div class="spacemain_tit">最新入驻企业</div>
+		  <div class="spacebox"><ul>
+	        {LB_最新加入企业}
+		  </ul>
+		  </div>
+	  </div>
+   </div>
+</div>
+
+<div class="clear"></div>
+<div class="spacead"><img src="{$GetInstallDir}images/blog/2009033116460692228.jpg" width="950"></div>
+<div class="clear"></div>
+<div class="spacemain">
+   <div class="spacemain_xc"><span class="more"><a href="{$GetInstallDir}User/?User_Photo.asp?Action=Createxc">马上创建相册</a></span>最新相册</div>
+   <div class="spacemain_xcbox"><ul>{LB_最新相册}</ul></div>
+</div>
+
+<div class="clear"></div>
+<div class="spacemain">
+   <div class="spacemain_xc"><span class="more"><a href="{$GetInstallDir}User/?User_Team.asp?action=CreateTeam">马上创建圈子</a></span>最新圈子</div>
+   <div class="spacemain_xcbox"><ul>{LB_最新圈子}</ul></div>
+</div>
+
+ <div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>{$GetArticleTitle}-{$GetClassName}-{$GetSiteName}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<script type="text/javascript">
+function scrollDoor(){
+}
+scrollDoor.prototype = {
+	sd : function(menus,divs,openClass,closeClass){
+		var _this = this;
+		if(menus.length != divs.length)
+		{
+			alert("菜单层数量和内容层数量不一样!");
+			return false;
+		}				
+		for(var i = 0 ; i < menus.length ; i++)
+		{	
+			_this.$(menus[i]).value = i;				
+			_this.$(menus[i]).onmouseover = function(){
+					
+				for(var j = 0 ; j < menus.length ; j++)
+				{						
+					_this.$(menus[j]).className = closeClass;
+					_this.$(divs[j]).style.display = "none";
+				}
+				_this.$(menus[this.value]).className = openClass;	
+				_this.$(divs[this.value]).style.display = "block";				
+			}
+		}
+		},
+	$ : function(oid){
+		if(typeof(oid) == "string")
+		return document.getElementById(oid);
+		return oid;
+	}
+}
+window.onload = function(){
+	var SDmodel = new scrollDoor();
+	SDmodel.sd(["m01","m02"],["c01","c02"],"sd01","sd02");
+
+}
+</SCRIPT>
+
+<SCRIPT language=JavaScript type=text/JavaScript>
+//改变图片大小
+function resizepic(thispic)
+{ 
+if(thispic.width>400) thispic.width=400; 
+}
+//无级缩放图片大小
+function bbimg(o)
+{
+  var zoom=parseInt(o.style.zoom, 10)||100;
+  zoom+=event.wheelDelta/12;
+  if (zoom>0) o.style.zoom=zoom+'%';
+  return false;
+}
+</SCRIPT>
+
+<script language="javascript">
+// JavaScript Document
+
+startList = function() {
+if (document.all&&document.getElementById) {
+navRoot = document.getElementById("nav");
+for (i=0; i<navRoot.childNodes.length; i++) {
+node = navRoot.childNodes[i];
+if (node.nodeName=="LI") {
+node.onmouseover=function() {
+this.className+=" over";
+ }
+ node.onmouseout=function() {
+ this.className=this.className.replace(" over", "");
+ }
+ }
+ }
+ }
+}
+window.onload=startList;
+</script>
+
+</head>
+<body>
+<style type="text/css">
+<!--
+body {
+	background-color: #000;
+}
+#__ tr td table tr td table tr .box .box_t {
+	color: #FFF;
+}
+#__ tr td table tr td table tr .box .box_t .box {
+	font-weight: normal;
+	font-family: "宋体";
+}
+.body{
+	font-size:12px;
+	font-weight:bold;
+	color:#FFF;
+}
+.title{
+	font-size:22px;
+	border-bottom-color:#F60;
+	border-bottom:1px;
+	font-weight: bold;
+	color: #999;
+}
+.info{
+	font-size:14px;
+	color:#FFF;
+	font-weight:bold;
+}
+.info_t{
+	font-size:14px;
+	color:#F90;
+	font-weight:bold;
+}
+.title_box{
+	font:"黑体";
+	font-size:22px;
+	font-weight:bold;
+	color:#999;
+}
+.box{
+	font-size:12px;
+	color:#CCC;
+	padding:5px;
+}
+.box_t{
+	font:"黑体";
+	font-size:18px;
+	font-weight:bold;
+}
+.box_o{
+	color:#F90;
+}
+img { border:none;}
+.list_title_wo { border-bottom:1px solid #FFCC00; font-size:14px; font-weight:bold; color:#FFFFFF;}
+.list-1 .l-a6{font-size:14px; font-weight:bold; color:#FFCC00; height:30px; line-height:30px;}
+.list-1 .a3{text-align:left;line-height:23px; font-size:14px; color:#fff;}
+.article_title { text-align:center; font-weight:bold;}
+-->
+.hao { background-color:#FFFFFF; height:55px; font-size:12px;}
+.hao ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 67px; /* Width of Menu Items */
+  }
+  
+.hao ul li {
+  position: relative;
+  list-style-type:none;
+  }
+  
+.hao li ul {
+  position: absolute;
+  left:5px; /* Set 1px less than menu width */
+  top: 50px;
+  display: none;
+  }
+.hao li ul li a { width:70px; height:22px; line-height:22px; background-color:#787D79; display:block; text-align:center; border:1px solid #FFCC00; color:#CCC; text-decoration:underline;}
+
+/* Styles for Menu Items */
+
+  
+/* Holly Hack. IE Requirement \*/
+* html ul li { float: left; height: 1%; }
+* html ul li a { height: 1%; }
+/* End */
+
+.hao li:hover ul, .hao li.over ul { display: block; } /* The magic */
+-->
+</style>
+<div style="height:651px; width:696px; position:absolute;  top:50%;  left:50%;  margin:-325px 0 0 -348px;">
+<table width="696" height="651" border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
+	<tr>
+		<td rowspan="2">
+			<img src="{$GetInstallDir}images/friends_01.gif" width="229" height="80" alt=""></td>
+		<td>
+			<a href="{$GetInstallDir}"><img src="{$GetInstallDir}images/friends_02.gif" width="46" height="55" alt=""></a></td>
+		<td colspan="3">
+			<a href="{$GetInstallDir}Item/list.asp?id=843"><img src="{$GetInstallDir}images/friends_03.gif" width="68" height="55" alt=""></a></td>
+  <td>
+			<a href="{$GetInstallDir}Item/list.asp?id=828"><img src="{$GetInstallDir}images/friends_04.gif" width="62" height="55" alt=""></a></td>
+		<td>
+			<a href="{$GetInstallDir}Item/list.asp?id=827"><img src="{$GetInstallDir}images/friends_05.gif" width="63" height="55" alt=""></a></td>
+		<td>
+<div class="hao">
+        <ul id="nav"> 
+         <li><a href="{$GetInstallDir}Item/list.asp?id=831"><img src="{$GetInstallDir}images/friends_06.gif" width="67" height="55" alt=""></a>
+         <ul> 
+         <li><a href="/Item/list.asp?id=849">礼品设计</a></li> 
+         <li><a href="/Item/list.asp?id=831">平面设计</a></li> 
+         <li><a href="#">学生作品</a></li> 
+         </ul> 
+         </li>
+        </ul>
+        </div>	</td>
+		<td>
+			<a href="{$GetInstallDir}Item/list.asp?id=829"><img src="{$GetInstallDir}images/friends_07.gif" width="69" height="55" alt=""></a></td>
+		<td colspan="2">
+			<a href="{$GetInstallDir}club/index.asp"><img src="{$GetInstallDir}images/friends_08.gif" width="91" height="55" alt=""></a></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="55" alt=""></td>
+	</tr>
+	<tr>
+		<td height="25" colspan="10" bgcolor="#5D605D">&nbsp;</td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="25" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3" rowspan="2">
+			<img src="{$GetInstallDir}images/friends_10.gif" width="288" height="60" alt=""></td>
+		<td colspan="8" bgcolor="#5D605D">&nbsp;</td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="45" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="7" bgcolor="#5D605D">&nbsp;</td>
+		<td colspan="6" rowspan="2">
+			<img src="{$GetInstallDir}images/friends_13.gif" width="293" height="47" alt=""></td>
+		<td rowspan="7" bgcolor="#5D605D">&nbsp;</td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="15" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3" rowspan="7">
+			<img src="{$GetInstallDir}images/friends_15.gif" width="288" height="510" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="32" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="{$GetInstallDir}images/friends_16.gif" width="293" height="55" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="55" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="{$GetInstallDir}images/friends_17.gif" width="293" height="61" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="61" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="{$GetInstallDir}images/friends_18.gif" width="293" height="51" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="51" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="{$GetInstallDir}images/friends_19.gif" width="293" height="57" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="57" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<img src="{$GetInstallDir}images/friends_20.gif" width="293" height="57" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="57" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<img src="{$GetInstallDir}images/friends_21.gif" width="407" height="197" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="1" height="197" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="229" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="46" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="13" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="32" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="23" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="62" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="63" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="67" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="69" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="9" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="82" height="1" alt=""></td>
+		<td></td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

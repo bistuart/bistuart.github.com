@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$GetSiteTitle}-RSS订阅</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">{$GetSearch}</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<!-- 顶部结束 -->
+<style>
+.rssbody{width:950px; margin:0px auto;}
+.rssleft{width:270px; float:left; }
+.rssbox{ margin-top:10px;border:#B6D3EB 1px solid;}
+.rsstit{background:url({$GetInstallDir}images/blue_bg.gif);padding-left:10px;height:35px;font-size:14px;font-weight:bold;color:#006699;line-height:35px; position:relative;}
+.rsstit span.more{ position:absolute; top:8px; right:6px;}
+.rsslist{line-height:24px;padding:8px; text-align:left; font-size:14px; color:#006699;}
+.rssright{width:670px; float:right;}
+.rss li a{ font-size:14px; font-weight:bold; color:#006699; text-decoration:underline;}
+.rss a{ font-size:12px; color:#0066FF; padding-right:8px;}
+</style>
+  
+<div class="rssbody">
+  <div class="rssleft">
+     <div class="rssbox">
+	    <div class="rsstit"><span class="more"><img src="{$GetInstallDir}images/rss.gif"></span>什么是RSS</div>
+	    <div class="rsslist">RSS是站点用来和其他站点之间共享内容的一种简易方式（也叫聚合内容），通常被用于新闻和其他按顺序排列的网站，例如Blog。一段项目的介绍可能包含新闻的全部介绍等。或者仅仅是额外的内容或者简短的介绍。这些项目的链接通常都能链接到全部的内容。网络用户可以在客户端借助于支持RSS的新闻聚合软件（如FeedDemon、SharpReader,NewzCrawler），在不打开网站内容页面的情况下阅读支持RSS输出的网站内容。网站提供RSS输出，有利于让用户发现网站内容的更新。</div>
+	 </div>
+	  <div class="rssbox">
+	    <div class="rsstit">RSS是如何工作的？<span class="more"><img src="{$GetInstallDir}images/rss.gif"></span></div>
+	    <div class="rsslist">首先您一般需要下载和安装一个RSS新闻阅读器，然后从网站提供的聚合新闻目录列表中订阅您感兴趣的新闻栏目的内容。订阅后，您将会及时获得所订阅新闻频道的最新内容。</div>
+	 </div>
+	 <div class="rssbox">
+	    <div class="rsstit">RSS有什么特点？<span class="more"><img src="{$GetInstallDir}images/rss.gif"></span></div>
+	    <div class="rsslist">1.没有广告或者图片来影响标题或者文章概要的阅读。<br>　
+　　2.RSS阅读器自动更新你定制的网站内容，保持新闻的及时性。</br>
+　　 3.用户可以加入多个定制的RSS提要，从多个来源搜集新闻整合 到单个数据流中。</br></div>
+	 </div>
+  </div>
+  <div class="rssright">
+     <div class="rssbox">
+	    <div class="rsstit">RSS订阅服务中心<span class="more"><img src="{$GetInstallDir}images/rss.gif"></span></div>
+	    <div class="rsslist">{$ShowRss}</div>
+	 </div>
+  </div>
+</div>  
+<div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

@@ -1,0 +1,464 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$GetClassName}-{$GetSiteName}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<SCRIPT type=text/javascript>
+function scrollDoor(){
+}
+scrollDoor.prototype = {
+	sd : function(menus,divs,openClass,closeClass){
+		var _this = this;
+		if(menus.length != divs.length)
+		{
+			alert("菜单层数量和内容层数量不一样!");
+			return false;
+		}				
+		for(var i = 0 ; i < menus.length ; i++)
+		{	
+			_this.$(menus[i]).value = i;				
+			_this.$(menus[i]).onmouseover = function(){
+					
+				for(var j = 0 ; j < menus.length ; j++)
+				{						
+					_this.$(menus[j]).className = closeClass;
+					_this.$(divs[j]).style.display = "none";
+				}
+				_this.$(menus[this.value]).className = openClass;	
+				_this.$(divs[this.value]).style.display = "block";				
+			}
+		}
+		},
+	$ : function(oid){
+		if(typeof(oid) == "string")
+		return document.getElementById(oid);
+		return oid;
+	}
+}
+window.onload = function(){
+	var SDmodel = new scrollDoor();
+	SDmodel.sd(["m01","m02"],["c01","c02"],"sd01","sd02");
+
+}
+</SCRIPT>
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">{$GetSearch}</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<div class="xinwenbg">
+  <div class="xinwen">新闻中心 News</div>
+  <div class="xinwendh"><ul>{LB_新闻导航}</ul></div>
+</div>
+
+
+<!--第一节开始-->
+<div class="xinwen_main1">
+   <div class="xinwen_main1_l">
+   
+   <!--推荐新闻-->
+       <div class=preview>
+			<div class=scrolldoorFrame>
+				
+                 <ul class=scrollUl>
+				    <li class="tit">推荐新闻</li>
+					<li class=sd01 id=m01 >最新资讯</li>
+					<li class=sd02 id=m02 value=1>热门资讯</li>
+				</ul>
+				<div class="bor03 cont">
+					<div id=c02 style="DISPLAY: none; height:240px; background:url(/images/hotr.gif) no-repeat;">
+					   <ul>
+						 {LB_通用热门新闻}
+					   </ul>
+					</div>
+					<div class=hidden id=c01 style="DISPLAY: block; height:240px; background:url(/images/hotr.gif) no-repeat;">
+					   <ul>
+						  {LB_通用最新新闻}
+					   </ul>
+					  </div>
+				</div>
+			</div>
+		</div>
+
+   <!--推荐新闻结束-->
+   
+   <div class="ad284_72"><a href="http://www.kesion.com" target="_blank"><img src="{$GetInstallDir}images/ad274_72.jpg" alt="科汛CMS"></a></div>
+				
+	</div>
+   <div class="xinwen_main1_r">
+    
+	      <!--右边头条-->
+ <div class="hottitle">
+ {LB_新闻资讯头条}
+</div>
+   <!--右边头条结束-->
+   
+   
+   <div class="xinwen_main1_2" style="border:#FFF 1px solid">
+      <div class="xinwen_flash">{LB_新闻频道幻灯}</div>
+        <div class="xinwen_news">
+	      <ul> 
+		{LB_新闻推荐}
+		 </ul>	  
+	    </div>
+    </div>
+   
+   </div>
+   <!--右边结束-->
+</div>
+
+   <!--第一节结束-->
+<div class="clear"></div>
+
+<div class="ad950">
+   <img src="{$GetInstallDir}images/950-80.gif">
+</div>
+
+<div class="clear"></div>
+   <!--第二节开始-->
+
+<div class="xinwen_main2">
+    <div class="xinwen_main2_1">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=690"><img src="{$GetInstallDir}images/more.gif"></a></span>国内新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_国内新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_2">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=689"><img src="{$GetInstallDir}images/more.gif"></a></span>国际新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_国际新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_3">
+	     
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=688"><img src="{$GetInstallDir}images/more.gif"></a></span>社会新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_社会新闻}
+					   </ul>
+	   </div>
+
+
+	</div>
+</div>
+
+
+
+   <!--第二节结束-->
+<div class="clear"></div>
+
+
+  <!--第三节开始-->
+<div class="xinwen_main2">
+    <div class="xinwen_main2_1">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=684"><img src="{$GetInstallDir}images/more.gif"></a></span>经济新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_经济新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_2">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=683"><img src="{$GetInstallDir}images/more.gif"></a></span>文化新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_文化新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_3">
+	     
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=682"><img src="{$GetInstallDir}images/more.gif"></a></span>娱乐新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_娱乐新闻}
+					   </ul>
+	   </div>
+
+
+	</div>
+</div>
+
+
+
+   <!--第三节结束-->
+
+ <div class="ad950_2">
+   <img src="{$GetInstallDir}images/950-80.gif">
+</div>
+
+<div class="clear"></div>
+
+  <!--第三节开始-->
+<div class="xinwen_main2">
+    <div class="xinwen_main2_1">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=684"><img src="{$GetInstallDir}images/more.gif"></a></span>体育新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_体育新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_2">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=683"><img src="{$GetInstallDir}images/more.gif"></a></span>教育新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_教育新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_3">
+	     
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=682"><img src="{$GetInstallDir}images/more.gif"></a></span>健康新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_健康新闻}
+					   </ul>
+	   </div>
+
+
+	</div>
+</div>
+
+
+
+   <!--第三节结束-->
+   
+ <div class="clear"></div>
+
+  <!--第三节开始-->
+<div class="xinwen_main2">
+    <div class="xinwen_main2_1">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=678"><img src="{$GetInstallDir}images/more.gif"></a></span>生活新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_生活新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_2">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=677"><img src="{$GetInstallDir}images/more.gif"></a></span>IT新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_IT新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_3">
+	     
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=676"><img src="{$GetInstallDir}images/more.gif"></a></span>图片新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_图片新闻}
+					   </ul>
+	   </div>
+
+
+	</div>
+</div>
+
+
+
+   <!--第三节结束-->
+ <div class="ad950_2">
+   <img src="{$GetInstallDir}images/950-80.gif">
+</div>
+
+<div class="clear"></div>
+
+  <!--第三节开始-->
+<div class="xinwen_main2">
+    <div class="xinwen_main2_1">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=675"><img src="{$GetInstallDir}images/more.gif"></a></span>视频新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						 {LB_视频新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_2">
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=674"><img src="{$GetInstallDir}images/more.gif"></a></span>房产新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_房产新闻}
+					   </ul>
+	   </div>
+	</div>
+    <div class="xinwen_main2_3">
+	     
+	   <div class="xinwen_main2_tit"><span class="more"><a href="{$GetInstallDir}Item/list.asp?id=673"><img src="{$GetInstallDir}images/more.gif"></a></span>汽车新闻</div>
+	   <div class="xinwen_main2_list">
+					   <ul>
+						  {LB_汽车新闻}
+					   </ul>
+	   </div>
+
+
+	</div>
+</div>
+
+
+
+   <!--第三节结束-->
+
+
+ <div class="clear"></div>
+{LB_底部通用}
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+<!--
+a:link {
+	color: #FFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #CCC;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+
+body {margin:0; padding:0;}
+.body{
+
+	font-size:12px;
+	font-weight:bold;
+	color:#FFF;
+}
+.title{
+	font-size:22px;
+	border-bottom-color:#F60;
+	border-bottom:1px;
+	font-weight: bold;
+	color: #999;
+}
+.info{
+	font-size:14px;
+	color:#FFF;
+	font-weight:bold;
+}
+.info_t{
+	font-size:14px;
+	color:#F90;
+	font-weight:bold;
+}
+.title_box{
+	font:"黑体";
+	font-size:22px;
+	font-weight:bold;
+	color:#999;
+}
+.box{
+	font-size:12px;
+	color:#CCC;
+	padding:7px;
+}
+.box_t{
+	font:"黑体";
+	font-size:18px;
+	font-weight:bold;
+}
+.box_o{
+	color:#F90;
+	font-weight:bold;
+}
+-->
+</style>
+<table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr height="115">
+    <td width="329"><img src="{$GetInstallDir}images/news_info_pic_01.gif" width="329" height="115" alt="" /></td>
+    <td width="41" align="left" valign="top" ><img src="{$GetInstallDir}images/news_info_pic_02.gif" width="41" height="115" alt="" /></td>
+    <td align="center" valign="middle" background="images/index_pic_02.gif" class="body"><a href="{$GetInstallDir}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$GetInstallDir}Item/list.asp?id=829">关于我们</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$GetInstallDir}Item/Show.asp?m=1&d=2">新&nbsp;&nbsp;&nbsp;&nbsp;闻</a><a href="{$GetInstallDir}Item/Show.asp?m=1&d=3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赛&nbsp;&nbsp;&nbsp;&nbsp;事</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$GetInstallDir}Item/list.asp?id=831">设计空间</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$GetInstallDir}Item/list.asp?id=829">联系我们</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$GetInstallDir}club/index.asp">论&nbsp;&nbsp;&nbsp;&nbsp;坛</a><span></span></td>
+  </tr>
+</table>
+<table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr height="820">
+    <td align="left" valign="top"><table width="497" border="0" cellspacing="0" cellpadding="0">
+      <tr height="85">
+        <td align="left" valign="top" bgcolor="#575956"><img src="{$GetInstallDir}images/news_info_pic_06.gif" width="329" height="85" alt="" /></td>
+        </tr>
+      <tr>
+        <td height="735" align="left" valign="top" bgcolor="#575956">&nbsp;</td>
+      </tr>
+    </table></td>
+    <td width="503" align="left" valign="top" bgcolor="#575956"><img src="{$GetInstallDir}images/news_list_pic_07.gif" width="503" height="820" alt="" /></td>
+  </tr>
+</table>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetSiteTitle}-搜索结果">
+<p align="left">
+搜索关键字{$GetSearchKey},本次搜索共找到{$ShowTotal}条相关记录:<br/>
+[loop=10] 
+<a href="{$GetProductUrl}">{$GetProductName}</a><br/>
+[/loop]
+{$ShowPage}
+--------<br/>
+{$GetGoBackIndex}<br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

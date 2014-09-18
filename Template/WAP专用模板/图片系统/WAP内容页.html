@@ -1,0 +1,32 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetPictureName}">
+<p>
+{$GetReadMessage}
+名字:{$GetPictureName}<br/>
+{$GetPictureByPage}<br/>
+{$GetPictureVote}<br/>
+时间:{$GetPictureDate}<br/>
+总浏览:{$GetPictureHits}<br/>
+
+【发表评论】<br/>
+{$GetWriteComment}
+{=GetShowComment(3,50)}
+{$GetFavorite}
+{$GetDigg}<br/>
+下:{$GetPrevPicture}<br/>
+上:{$GetNextPicture}<br/>
+
+【相关图片】<br/>
+{$GetRelatedContentsList([AutoID].,<br/>,3,50)}
+【随机图片】<br/>
+{$GetRandomContentsList([AutoID].,<br/>,3,50)}
+--------<br />
+{$GetLocation}<br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

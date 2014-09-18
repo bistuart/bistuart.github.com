@@ -1,0 +1,286 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{@ask.sitetitle}-{$GetSiteName}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<script src='{$GetInstallDir}ks_inc/kesion.box.js' language="JavaScript"></script>
+<script src='{$GetInstallDir}ks_inc/common.js' language="JavaScript"></script>
+<script src='{$GetInstallDir}ks_inc/jquery.js' language="JavaScript"></script>
+<script src='{$GetInstallDir}ks_inc/kesion.box.js' language="JavaScript"></script>
+		<script language="JavaScript">
+		<!--
+		function checkform(obj){
+			{IF:KS.C("UserName")=""}
+			 alert('对不起,请登录后再提问!');
+			ShowLogin();
+			return false;
+			{/IF}
+			if(obj.topic.value==""){
+				alert("友情提示\n\n请输入问题标题!");
+				obj.topic.focus();
+				return false;
+			}
+			if (FCKeditorAPI.GetInstance("askcontent").GetXHTML()=='')
+			{
+				alert("友情提示\n\n请输入问题详细描述!");
+				FCKeditorAPI.GetInstance('askcontent').Focus();
+				return false;
+			}
+			
+			
+			try{
+			if(obj.classid.value=="" && obj.smallclassid.value==""){
+				alert("友情提示\n\n请选择问题分类!");
+				return false;
+			}
+			}
+			catch(e){}
+			{IF:KS.ASetting(6)="1"}
+			if(obj.Verifycode.value==""){
+				alert("友情提示\n\n请输入验证码!");
+				obj.Verifycode.focus();
+				return false;
+			}
+			{/IF}
+			return true;
+		}
+		function resets(){
+		$('#topic').val("");
+		$('#askcontent').val("");
+		}
+		function getCode(){
+		 $("#showVerify").html('<IMG id="VerifyImg" style="cursor:pointer;" src="../plus/verifycode.asp?n=<%=Timer%>" onClick="this.src=\'../plus/verifycode.asp?n=\'+ Math.random();" align="absmiddle">');
+		}
+		
+		$(document).ready(function(){
+			   if(document.askedform.topic.value != "")	searchRelated(document.askedform.topic);
+		 
+				{IF:KS.C("UserName")=""}
+				 try{
+				 $("#topic").keydown(function(){
+					alert('对不起,请登录后再提问!');
+					ShowLogin();
+					return false;
+				 });
+				 $("#askcontent").keydown(function(){
+					 alert('对不起,请登录后再提问!');
+					ShowLogin();
+					return false;
+				 })
+				 
+				}catch(e){}
+			{/IF}
+		})
+		
+		function ShowLogin(){
+		popupIframe("会员登录","../user/userlogin.asp?Action=Poplogin",387,184,'no')
+		}
+		
+		
+		var SearchRelatedUrl = 'ajax_search.asp?word=';
+		function searchRelated(searchField)
+		{
+		   var content = escape(searchField.value);
+		   if (content.length<2) return;
+		   $.get(SearchRelatedUrl,{word:content},function(result){
+			 $("#RelatedQuestionZone").html(unescape(result));
+		   })
+			
+		}
+		//-->
+		</script>
+<style type="text/css">
+.solvedZone{padding-left:25px}
+.solvedZone li{height:20px;line-height:20px;list-style-type:circle}
+</style>
+</head>
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+	<div class="header">
+	  <div class="head">
+		<div class="logo"><img src="{$GetInstallDir}images/logo.jpg"></div>
+		<div class="header_right">
+		  <ul>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_01.gif" /></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_02.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_03.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_04.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_05.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_06.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_07.gif"/></li>
+			<li width="80"><img src="{$GetInstallDir}Images/icon_08.gif"/></li>
+		  </ul>
+		  <div class="clear"></div>
+		  <ul>
+			<li><a href="{$GetInstallDir}User/index.asp">会员中心</a></li>
+			<li><a href="{$GetInstallDir}company">企业黄页</a></li>
+			<li><a href="{$GetInstallDir}music">音乐系统</a></li>
+			<li><a href="{$GetInstallDir}shop/GroupBuy.asp">团购报名</a></li>
+			<li><a href="{$GetInstallDir}club/index.asp">互动交流</a></li>
+			<li><a href="{$GetInstallDir}User/?User_ScoreExchange.asp">积分兑换</a></li>
+			<li><a href="{$GetInstallDir}product">产 品 库</a></li>
+			<li><a href="{$GetInstallDir}space">个人门户</a></li>
+		  </ul>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="menu">
+		<div class="nav">
+			<ul>
+				<li><a class=blue-bg href="{$GetInstallDir}">网站首页</a> </li>
+				{LB_频道导航}
+			</ul>
+		</div>
+	</div>
+	<div class="sea">
+		<div class="search">
+			<div class="sea_l">
+			    <div>
+          <script>
+  check=function(){
+   if (document.getElementById('KeyWord').value=='')
+   {
+     alert("对不起,您没有输入关键字!");
+	 return false
+   }
+  }
+  goask=function(){
+   if (document.getElementById('KeyWord').value=='')
+   {
+     alert("对不起,您没有输入关键字!");
+	 return false
+   }else{
+    window.open('a.asp?q='+document.getElementById('KeyWord').value);
+	return false;
+   }
+   
+  }
+        </script>
+          <form action="search.asp" method="post" name="myform" id="myform">
+            <dt>问题搜索
+                <input type="text" name="KeyWord" id="KeyWord" size="20" />
+                  <input type="image" src="{$GetInstallDir}ask/images/ask003.gif" onClick="return(check())" align="absmiddle" />
+                  <input type="image" src="{$GetInstallDir}ask/images/ask004.gif" onClick="return(goask())" align="absmiddle" />
+              </dt>
+          </form>
+        </div>
+	</div>
+			<div class="sea_r">{=GetTags(1,8)}</div>
+		</div>
+	</div>
+<div class="clear"></div>
+<!-- 顶部结束 -->
+
+<div class="ask_main1">
+  <div class="ask_main1_l">
+     <div class="askbutton"><a href="{$GetInstallDir}ask/a.asp"><img src="{$GetInstallDir}ask/images/ask.gif" alt="我要提问"></a></div>
+	 <div class="ask_main1_lbox">
+	   <div class="ask_main1_tit">问题分类</div>
+	   <div class="ask_main1_box">
+	       已解决问题数：<span class="askjjnum">{@ask.resolvednum}</span>条<br />
+             待解决问题数：<span class="asknum">{@ask.unresolvednum}</span>条
+			 <div class="clear"></div>
+			<hr size=1 color="#B6D3EB">
+			<dl id=leftCategory>{@ask.menulist}</dl>
+	   </div>
+	 </div>
+  </div>
+  <div class="ask_main1_twr">
+     <div class="position"><ul>当前位置：<a href="{$GetInstallDir}">科汛网络开发</a> >> <a href="{$GetInstallDir}ask">问答系统</a> >> 我要提问 </ul></div>
+	
+	  <div class="askad"><img src="{$GetInstallDir}ask/images/askad.gif"></div>
+
+     <div class="ask_tiwen">
+	       
+		   
+		  <div class="postAskZone">
+		     <div id="RelatedQuestionZone" style="padding-left:10px; border-bottom:#489CE6 1px solid;"></div>
+			<iframe name="_hideframe" style="display:none;"></iframe>
+			<table width="100%" border="0" cellpadding="0" cellspacing="6">
+			<form name="askedform" id="askedform" method="post" action="?" target="_hideframe" onSubmit="return checkform(this);">
+			<input type="hidden" name="action" value="save">
+			<tr>
+				<td width="15%" align="right"><b>问题标题：</b></td>
+				<td width="85%"><input type="text" size="80" name="topic" id="topic" value="{@get.question}" maxlength="150" onKeyUp="searchRelated(this)" /> <font color="red">*</font></td>
+			</tr>
+			<tr>
+				<td align="right"><b>详细描述：</b></td>
+				<td><textarea style="display:none" name="askcontent" id="askcontent" cols="80" rows="8" wrap="PHYSICAL"></textarea><br/>
+				
+				<iframe  id="content___Frame" src="../KS_Editor/FCKeditor/editor/fckeditor.html?InstanceName=askcontent&amp;Toolbar=Basic" width="98%" height="150" frameborder="0" scrolling="no"></iframe>
+				
+				<br>
+				<span>详细描述您的问题，描述越细致，越容易得到准确回答。</span></td>
+			</tr>
+			<tr>
+				<td align="right"><b>问题分类：</b></td>
+				<td>
+				<script src="category.asp" language="javascript"></script>
+				<div style="clear:both"><font color="red">*</font> <span>请您选择正确的分类，以使您的问题得到更专业的解答。</span></div></td>
+			</tr>
+			<tr>
+			  <td align="right"><b>有效天数：</b></td>
+			  <td><input type=text name="ExpiredDays" maxLength=6 size="8" value="15" tabindex="3" class="textbox">
+			    天
+		      过提问时间指定的天数之后，问题将被关闭。 </td>
+			  </tr>
+			<tr>
+				<td align="right"><b>悬 赏 分：</b></td>
+				<td><select name="scores">
+					<option value="0">无悬赏</option>
+					<option value="5">5分</option>
+					<option value="10">10分</option>
+					<option value="15">15分</option>
+					<option value="20">20分</option>
+					<option value="30">30分</option>
+					<option value="50">50分</option>
+					<option value="80">80分</option>
+					<option value="100">100分</option>
+				</select> 
+				您当前的积分是 <font color="red">{@Get.UserScore}分</font>
+				<span>设置悬赏可以吸引到更多更精彩的回答。</span></td>
+			</tr>
+			<tr>
+				<td align="right"><b>匿名设定：</b></td>
+				<td><input type="checkbox" name="anonym" id="anonym" value="1"/>
+				<span>您可以对问题设定匿名，但您需要付出积分 <font color="red">{@Get.AnonymScore}分</font>。</span></td>
+			</tr>
+			 {IF:KS.ASetting(6)="1"}
+			<tr>
+				<td align="right"><b>验 证 码：</b></td>
+				<td><input type=text name="Verifycode" onClick="getCode()" maxLength=6 size="8" tabindex="3" class="textbox"> 
+		        <span id="showVerify"></span></td>
+			</tr>
+			{/IF}
+			 
+			<tr>
+				<td align="right"></td>
+				<td><input width="76" height="22" type="image" src="images/ask_submit.jpg" name="asksubmit" id="asksubmit"/>
+				<img style="cursor:pointer" src="images/ask_cancel.jpg" onClick="resets();"/>				</td>
+			</tr>
+			</form>
+			</table>
+		</div>
+   
+   
+	 </div>
+  </div>
+
+</div>
+
+<div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

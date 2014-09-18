@@ -1,0 +1,36 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetArticleShortTitle}">
+<p align="left">
+{$GetReadMessage}
+{$GetArticleShortTitle}<br/>
+{$GetArticleDate}<br/>
+</p>
+<p align="center">
+{=GetPhoto(100,100)}
+</p>
+<p align="left">
+{=GetArticleContent(True,400,True,True)} <br/>
+
+下篇:{$GetPrevArticle}<br/>
+上篇:{$GetNextArticle}<br/>
+Tags:{$GetKeyTags}<br/>
+{$GetFavorite}
+{$GetDigg}
+<br/>
+【发表评论】<br/>
+{$GetWriteComment}
+{=GetShowComment(3,50)}
+【相关图片】<br/>
+{$GetRelatedContentsList([AutoID].,<br/>,3,50)}
+【随机文章】<br/>
+{$GetRandomContentsList([AutoID].,<br/>,3,50)}
+--------<br/>
+{$GetLocation}<br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

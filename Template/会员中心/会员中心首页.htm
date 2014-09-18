@@ -1,0 +1,138 @@
+﻿<html>
+<head>
+<title>{$GetSiteName}-会员控制面板</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="images/css.css" />
+<script src="../ks_inc/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+ <!---
+  $(document).ready(function(){
+     $.get("UserAjax.asp",{action:"Info"},function(d){
+	  jQuery("#myimage").html(unescape(d));
+	 });
+     $.get("UserAjax.asp",{action:"TopTips"},function(d){
+	  jQuery("#TopTips").html(unescape(d));
+	 });
+     $.get("UserAjax.asp",{action:"ModelMenu"},function(d){
+	  jQuery("#mymodel").html(unescape(d));
+	 });
+     $.get("UserAjax.asp",{action:"SpaceMenu"},function(d){
+	  jQuery("#myspace").html(unescape(d));
+	 });
+	 
+     var gUrl = location.search;
+	 gUrl = gUrl.substr(gUrl.indexOf('?')+1);
+	 document.getElementById('main').src=(gUrl=='')?'User_Main.asp':gUrl;
+  });
+  function getNewMessage()
+  {
+    $.get("UserAjax.asp",{action:"GetNewMessage"},function(d){
+	 jQuery("#NewMessage").html(unescape(d));
+	});
+	setTimeout("getNewMessage()", 10000);
+  }
+	setTimeout("getNewMessage()", 1000);
+ 
+  //-->
+</script>
+</head>
+
+<body class="frame_class" scroll="no">
+<table style="border-bottom:none!important;*border-bottom:2px solid #fff;" cellspacing="0" cellpadding="0" width="100%" height="100%">
+	<tr>
+		<td height="66" class="getuserdata" id="topDataTd">
+				<div class="topdata">
+												
+				<div class="topbg" style="height:66px">
+			<div class="setinfo addrtitle" id="SetInfo">
+                <span id="minimize_container"></span><a href="User_EditInfo.asp?Action=PassInfo" target="main" class="toptitle" >修改密码</a><span class="addrtitle"> | </span><a href="http://www.kesion.com" target="_blank" class="toptitle" >帮助中心</a><span class="addrtitle"> | </span><a href="UserLogout.asp" target="_parent" class="toptitle" >安全退出</a>
+			</div>
+            	<div  class="search_subject">
+				<form id="frmSearch" name="frmSearch" method="get" action="../plus/search/" target="mainFrame"  style="margin:0;padding:0">
+			
+					<div style="position:absolute;z-index:2;margin:0 0 0 8px;*margin:0 0 0 1px;">快速搜索:
+<input type="text"  id="key" value="关键字" onFocus="this.value='';" onBlur="if (this.value=='') this.value='关键字';" name="key" maxlength="50" size="20" style="height:24px;line-height:24px" /> <input type="submit" class="button" value=" 搜 索 " /></div>
+					
+				</form>
+			</div>
+		</div>
+			<div class="lgoo">
+				
+				<a class="imglogo" href="index.asp" target="mainFrame" onFocus="this.blur();" title="会员首页">
+					<img id="imglogo" src="images/logo.jpg">
+				</a>
+				<div class="switch">
+					<div class="left" style="margin-top:1px;">
+					 <div id="TopTips">loading... </div>
+					   <li class="rl" onMouseOver="$('#myspace').show();" onMouseOut="$('#myspace').hide();"><a  target="_blank" href="userajax.asp?action=Space">我的空间门户<img src="images/arrow_d.gif" alt="" /></a> ┊
+						  <div class="abs" style="width:120px" id="myspace">
+						  </div>
+						</li>
+					   <li><a href="user_message.asp?action=inbox" target="main" onFocus="this.blur();"><span id="NewMessage">站内消息(0)</span></a> ┊ </li>
+					   <li><a href="user_editinfo.asp" target="main" onFocus="this.blur();">基本信息</a>┊</li>
+					   <li class="rl" onMouseOver="$('#submoney').show();" onMouseOut="$('#submoney').hide();"><a href="javascript:void(0)">我的财富<img src="images/arrow_d.gif" alt="" /></a> ┊
+						  <div class="abs" style="width:120px" id="submoney">
+						   <dl><a href="user_payonline.asp" target="main">在线充值</a></dl>
+						   <dl><a href="User_order.asp?action=coupon" target="main">优 惠 券</a></dl>
+						   <dl><a href="user_logmoney.asp" target="main">财务明细</a></dl>
+						   <dl><a href="user_logpoint.asp" target="main">点券明细</a></dl>
+						   <dl><a href="user_logedays.asp" target="main">有效期明细</a></dl>
+						   <dl><a href="user_logscore.asp" target="main">积分明细</a></dl>
+						  </div>
+						</li>
+						<li class="rl" onMouseOver="$('#subcomment').show();" onMouseOut="$('#subcomment').hide();"><a href="User_MyComment.asp" target="main" onFocus="this.blur();">我的评论<img src="images/arrow_d.gif" alt="" /></a> ┊
+						  <div class="abs" id="subcomment" style="width:120px">
+						   <dl><a href="User_MyComment.asp" target="main">我发表的评论</a></dl>
+						   <dl><a href="User_MyComment.asp?action=My" target="main">对我的稿件评论</a></dl>
+						  </div>
+						  </li>
+					   <li><a href="User_ScoreExchange.asp" target="main" style="color:red" onFocus="this.blur();">积分兑换</a><img align='absmiddle' src="../images/hot.gif"> </li>
+                    </div>
+				</div>
+			</div>
+				
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="topline_height"  id="sepLineTd">
+			<div class="topline">
+				<div class="toplineimg left" id="imgLine" ></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="newskin_left">
+			
+			<div id="leftPanel" class="leftcontent">
+				
+				<table class="fdbody" cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
+					<tr>
+						<td class="newskinbody"  style="height:100%;">
+							<table cellspacing="0" cellpadding="0" width="100%" height="100%">
+								<tr>
+									<td height="1">
+									<div class="photo" id="myimage"></div>
+									</td>
+								</tr>
+								<tr>
+								 <td valign="top">
+									<a class="mem_left_ad" href="user_payonline.asp" target="main">立即升级会员享受尊贵特权</a>
+									<div  id="showAccountDiv">	
+										  <ul id="mymodel">loading...</ul>	
+									</div>
+								  </td>
+								</tr>
+							</table>
+						</td>
+					<tr>
+				</table>
+			</div>
+			 <div id="mainFrameContainer" class="maincontent">
+				 <iframe src="user_main.asp" style="width:100%;height:100%;" name="main" id="main" frameborder="no" scrolling="auto"></iframe>
+			</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetClassName}">
+<p>
+{$GetReadMessage}
+【热门商品】<br/>
+{$GetShowClassList(1,,<br/>,5,30)}
+【最新商品】<br/>
+{$GetShowClassList(2,,<br/>,5,30)}
+【搜索商品】<br/>
+<input name="KeyWord" type="text" value=""/>
+<anchor>搜索<go href="plus/Search.asp?{$WapValue}" method="post">
+<postfield name="ChannelID" value="5"/>
+<postfield name="KeyWord" value="$(KeyWord)"/>
+</go></anchor>
+<br />
+【商品分类】<br/>
+{$GetClassList(2,|)}
+--------<br />
+{$GetLocation}<br/>
+</p>
+</card>
+</wml>

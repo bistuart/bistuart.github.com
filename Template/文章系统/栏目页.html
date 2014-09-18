@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_self">
+<title>{$GetClassName}-{$GetSiteName}</title>
+<meta content="text/html; charset=UTF-8" http-equiv=Content-Type>
+
+<SCRIPT type=text/javascript>
+function scrollDoor(){
+}
+scrollDoor.prototype = {
+	sd : function(menus,divs,openClass,closeClass){
+		var _this = this;
+		if(menus.length != divs.length)
+		{
+			alert("菜单层数量和内容层数量不一样!");
+			return false;
+		}				
+		for(var i = 0 ; i < menus.length ; i++)
+		{	
+			_this.$(menus[i]).value = i;				
+			_this.$(menus[i]).onmouseover = function(){
+					
+				for(var j = 0 ; j < menus.length ; j++)
+				{						
+					_this.$(menus[j]).className = closeClass;
+					_this.$(divs[j]).style.display = "none";
+				}
+				_this.$(menus[this.value]).className = openClass;	
+				_this.$(divs[this.value]).style.display = "block";				
+			}
+		}
+		},
+	$ : function(oid){
+		if(typeof(oid) == "string")
+		return document.getElementById(oid);
+		return oid;
+	}
+}
+window.onload = function(){
+	var SDmodel = new scrollDoor();
+	SDmodel.sd(["m01","m02"],["c01","c02"],"sd01","sd02");
+
+}
+</SCRIPT>
+<script language="javascript">
+// JavaScript Document
+
+startList = function() {
+if (document.all&&document.getElementById) {
+navRoot = document.getElementById("nav");
+for (i=0; i<navRoot.childNodes.length; i++) {
+node = navRoot.childNodes[i];
+if (node.nodeName=="LI") {
+node.onmouseover=function() {
+this.className+=" over";
+ }
+ node.onmouseout=function() {
+ this.className=this.className.replace(" over", "");
+ }
+ }
+ }
+ }
+}
+window.onload=startList;
+</script>
+<style type="text/css">
+<!--
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style></head>
+<body>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #000;
+}
+#__ tr td table tr td table tr .box .box_t {
+	color: #FFF;
+}
+#__ tr td table tr td table tr .box .box_t .box {
+	font-weight: normal;
+	font-family: "宋体";
+}
+.body{
+	font-size:12px;
+	font-weight:bold;
+	color:#FFF;
+}
+.title{
+	font-size:22px;
+	border-bottom-color:#F60;
+	border-bottom:1px;
+	font-weight: bold;
+	color: #999;
+}
+.info{
+	font-size:12px;
+	color:#FFF;
+	font-weight:bold;
+}
+.info_t{
+	font-size:12px;
+	color:#F90;
+	font-weight:bold;
+}
+.title_box{
+	font:"黑体";
+	font-size:22px;
+	font-weight:bold;
+	color:#999;
+}
+.box{
+	font-size:12px;
+	color:#CCC;
+	padding:5px;
+}
+.box_t{
+	font:"黑体";
+	font-size:18px;
+	font-weight:bold;
+}
+.box_o{
+	color:#F90;
+}
+img { border:none;}
+li { font-size:12px; list-style-type:none;}
+.list_title_wo { border-bottom:1px solid #FFCC00; font-size:12px; font-weight:bold; color:#FC0; margin-left:40px;}
+.list-1 {color:#999;}
+.list-1 .l-a6{font-size:14px; font-weight:bold; color:#FF9900; height:30px; line-height:30px; text-decoration:none}
+.list-1 .a3{text-align:left;line-height:23px; font-size:12px; color:#fff;}
+.dotted-line {border-bottom:1px solid #999; height:-1px;}
+a.l-a7 { color:#666; font-size:12px;}
+.list-1 hr{background-color:#5c605d; size:0; border-top-color:#5c605d; border-left-color:#5c605d;  border-right-color:#5c605d;}
+a.prev { color:#000; font-size:12px;}
+.fenye, .fenye a { font-size:12px; color:#999;}
+.curr font {color:#999;}
+-->
+.hao { background-color:#FFFFFF; height:54px;}
+.hao ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 82px; /* Width of Menu Items */
+  }
+  
+.hao ul li {
+  position: relative;
+  list-style-type:none;
+  }
+  
+.hao li ul {
+  position: absolute;
+  left:5px; /* Set 1px less than menu width */
+  top: 50px;
+  display: none;
+  }
+.hao li ul li a { width:70px; height:22px; line-height:22px; background-color:#787D79; display:block; text-align:center; border:1px solid #FFCC00; color:#CCC; text-decoration:underline;}
+
+/* Styles for Menu Items */
+
+  
+/* Holly Hack. IE Requirement \*/
+* html ul li { float: left; height: 1%; }
+* html ul li a { height: 1%; }
+/* End */
+
+.hao li:hover ul, .hao li.over ul { display: block; } /* The magic */
+-->
+</style>
+<div style="height:651px; width:696px; position:absolute;  top:50%;  left:50%;  margin:-325px 0 0 -348px;">
+<table width="695" height="651" border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
+	<tr>
+		<td>
+			<img src="{$GetInstallDir}images/news_list_01.gif" width="172" height="54" alt=""></td>
+		<td>
+			<a href="{$GetInstallDir}"><img src="{$GetInstallDir}images/news_list_02.gif" width="57" height="54" alt=""></a></td>
+		<td>
+			<a href="{$GetInstallDir}Item/list.asp?id=843"><img src="{$GetInstallDir}images/news_list_03.gif" width="72" height="54" alt=""></a></td>
+  <td colspan="2">
+			<a href="{$GetInstallDir}Item/list.asp?id=828"><img src="{$GetInstallDir}images/news_list_04.gif" width="77" height="54" alt=""></a></td>
+		<td>
+			<a href="{$GetInstallDir}Item/list.asp?id=827"><img src="{$GetInstallDir}images/news_list_05.gif" width="67" height="54" alt=""></a></td>
+		<td>
+        <div class="hao">
+        <ul id="nav"> 
+         <li><a href="{$GetInstallDir}Item/list.asp?id=831"><img src="{$GetInstallDir}images/news_list_06.gif" width="82" height="54" alt=""></a>
+         <ul> 
+         <li><a href="/Item/list.asp?id=831">礼品设计</a></li> 
+         <li><a href="/Item/list.asp?id=849">平面设计</a></li> 
+         <li><a href="/Item/list.asp?id=855">学生作品</a></li> 
+         </ul> 
+         </li>
+        </ul>
+        </div>
+			</td>
+		<td>
+			<a href="{$GetInstallDir}Item/list.asp?id=829"><img src="{$GetInstallDir}images/news_list_07.gif" width="76" height="54" alt=""></a></td>
+		<td>
+			<a href="{$GetInstallDir}club/index.asp"><img src="{$GetInstallDir}images/news_list_08.gif" width="92" height="54" alt=""></a></td>
+	</tr>
+	<tr>
+		<td colspan="4" valign="top" bgcolor="#fff">
+			<img src="{$GetInstallDir}images/news_list_09.gif" width="332" height="86" alt=""></td>
+		<td colspan="5" rowspan="2">
+			<img src="{$GetInstallDir}images/news_list_10.gif" width="363" height="596" alt=""></td>
+	</tr>
+	<tr>
+		<td height="490" colspan="4" bgcolor="#5C605D" style="padding-left:20px; vertical-align:top; padding-top:20px;" >
+         <div class="list_title_wo">{$GetClassName}列表</div>
+	      {LB_终级文章列表}
+        </td>
+	</tr>
+	<tr>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="172" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="57" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="72" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="31" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="46" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="67" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="82" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="76" height="1" alt=""></td>
+		<td>
+			<img src="{$GetInstallDir}images/分隔符.gif" width="92" height="1" alt=""></td>
+	</tr>
+
+
+
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

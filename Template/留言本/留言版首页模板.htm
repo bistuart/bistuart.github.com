@@ -1,0 +1,181 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$GuestTitle}-{$GetSiteTitle}</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="{$GetInstallDir}images/index.css" type=text/css rel=stylesheet>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<script src="../ks_inc/jquery.js"></script>
+<script src="../ks_inc/kesion.box.js"></script>
+<script src="images/club.js"></script>
+<style type="text/css">
+.topiclist td{border-bottom:1px solid #f1f1f1}
+.topiclist td .time{color:#ccc}
+</style>
+
+
+<style media="screen" type="text/css"> 
+<!-- 
+UL{list-style-type:none; margin:0px;} 
+.ttl{height:18px;} 
+.ctt{ 
+height:auto; 
+clear:both; 
+height:276px;
+} 
+.w250{ 
+width:250px; 
+clear:both; 
+margin-right: 0; 
+margin-left: 0; 
+overflow:hidden;
+border:#A9CFF6 1px solid;
+} 
+ 
+.dis{padding:5px;padding-left:28px;display:block;} 
+.dis td{line-height:25px;}
+
+.undis{display:none;padding:5px;padding-left:28px;} 
+.undis td{line-height:25px;}
+.tabs { 
+      width:100%; 
+      background:url({$GetInstallDir}images/bg1.gif); height:29px;
+      font-size:14px; 
+      line-height:normal; 
+      } 
+    .tabs ul { 
+margin:0; 
+padding:0px; 
+list-style:none; 
+      } 
+    .tabs li { 
+display:inline; 
+margin:0; 
+padding:0;
+margin-top:3px;
+margin-left:5px;
+cursor: pointer; 
+
+      } 
+.tabs a span {
+    float:none;
+}   
+.tabs a:hover span { 
+      color:#000;
+
+} 
+.open{ 
+	  float:left; 
+      background:#FFFFFF; border:#C6D2E3 1px solid; border-bottom:none;
+      height:25px; 
+	  text-decoration:none; 
+	  line-height:25px;
+	  text-align:center;
+      width:73px
+} 
+    .close { 
+	  float:left; 
+	  background:#F1F7FB;
+      color:#003366; 
+	  height:25px;
+	  line-height:25px;
+      width:73px;
+	  text-align:center
+      } 
+	  .dis ul{ padding:0px;}
+	  .dis li{ line-height:24px; text-align:left;}
+	  .dis a{ font-size:14px;}
+	  .undis ul{ padding:0px;}
+	  .undis li{ line-height:24px;text-align:left;}
+	  .undis a{ font-size:14px;}
+--> 
+</style> 
+
+<body>
+<div id="topdiv">
+   <div id="topper">
+	<div id="datediv"><img src="{$GetInstallDir}images/taiyang.gif" align="absmiddle">今天是：{$JS_Time2}</div>
+	<div id="icon01"><img src="{$GetInstallDir}images/m_list_49.gif" align="absmiddle"></div>
+	<div id="logondiv">{$GetTopUserLogin}</div>
+	<div id="makehome"><img src="{$GetInstallDir}images/home.gif" align="absmiddle">{$JS_HomePage} <img src="{$GetInstallDir}images/email.gif" align="absmiddle"> {$JS_Collection} <img src="{$GetInstallDir}images/ic_chan.gif" align="absmiddle"> {$JS_Language}</div>
+	<div class="clear"></div>
+	</div>
+</div>
+
+<div style="text-align:center; padding-top:10px;"><img src="{$GetInstallDir}images/banner.jpg"></div>
+
+<div class="clear"></div>
+<!-- 顶部结束 -->
+      <div class="leaves_main">
+     <div class="leaaves_mainbox">
+       <div class="ly_site"><img src="{$GetInstallDir}images/nav_icon.gif">{LB_位置导航}</div>
+        
+		{IF:Request.QueryString=""}
+        <div class="ly_top"> 今日：{$TodayNum} 帖  | 昨日：{$YesterDayNum} 帖 |最高日：{$MaxDayNum} 帖 
+主题：{$TopicNum} 帖 | 帖子：{$ReplayNum} 帖 | 会员数：{$UserNum}位  | 新会员：<font color="#0066FF">{$NewUser}</font><br></div>
+        {/IF}
+		
+		{IF:Request.QueryString("boardid")<>"" or Request.QueryString("pid")<>""}
+        <div style="margin-top:15px;padding:10px;border:1px solid #C6D2E3;background:#F1F7FB"> 
+		  <div><strong><img src="{$GetInstallDir}images/icon_try.gif"> 本版版规:</strong></div>
+		  <div>{$BoardRules}</div>
+		</div>
+        {/IF}
+
+
+   <div class="ly_top2">
+	   <div class="ly_top2l"><a href="post.asp{$PostBoardID}"><img src="{$GetInstallDir}images/fatie.gif"></a></div>
+	   <div class="ly_top2m"><a href="/"><img src="{$GetInstallDir}images/backhome.gif"></a></div>
+	   <div class="ly_top2r">&nbsp;<img src="{$GetInstallDir}images/home.gif"><a href="index.asp">首页</a> <img src="{$GetInstallDir}images/10.gif"><a href="index.asp?isbest=1">精华</a> <img src="{$GetInstallDir}images/zhiding.gif"><a href="index.asp?istop=1">置顶</a></div>
+	</div>
+	   <div class="guestbook">
+	   
+	   {ElseIF:KS.Setting(59)="1" Or Request.QueryString<>"" }
+	      {$GetGuestList} 
+	   {Else}
+		   	 <div class="guestlist">{$GetGuestList} </div>
+			 
+			   <div class="guestbook_r">
+				<div class="guestbook_r1">
+				   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<form name="search" method="get" action="Index.asp">
+									  <tr>
+										<td>
+										<div align="center"><span id="gbsearch">帖子搜索：</span>
+										  <input type="text" name="keyword" id="keyword" class="inputtext" size="32"  onMouseOver=this.focus() onFocus=this.select()>
+											<input type="radio" name="SearchType" value="1" checked>主题 <input type="radio" name="SearchType" value="2">作者
+											<input type="image" onClick="return(checksearch())" border="0" src="{$GetInstallDir}images/btn.gif" align="absmiddle">
+										</div></td>
+									  </tr>
+									</form>
+				  </table>
+				</div>
+				
+				
+				<div class="guestbook_r2">
+					<div class="w250"> 
+					<div id="tb_" class="tb_ tabs"> 
+						<ul> 
+							<li id="tb_1" class="open">最新发表</li> 
+							<li id="tb_2" class="close">最新回复</li> 
+							<li id="tb_3" class="close">精华帖子</li> 
+						</ul> 
+					</div> 
+					<div class="ctt"> 
+						<div id="tbc_01" class="dis">
+						  <ul>{LB_最新帖子}</ul></div> 
+						<div id="tbc_02" class="undis"><ul>{LB_最新回复}</ul></div> 
+						<div id="tbc_03" class="undis"><ul>{LB_精华帖子}</ul></div> 
+					</div> 
+				  </div>
+				</div>
+			  </div>
+		 {/ElseIf}
+	   </div>
+	
+   </div>
+   </div>
+<div class="clear"></div>
+{LB_底部通用}
+</body>
+</html>

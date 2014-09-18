@@ -1,0 +1,34 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GetDownTitle}">
+<p>
+{$GetReadMessage}
+名称:{$GetDownProperty}{$GetDownTitle}<br/>
+星级:{$GetStar}<br/>
+适用:{$GetDownSystem}<br/>
+{=GetDownPhoto(90,90)}<br/>
+介绍:{=GetContentIntro(30)}<br/>
+作者:{$GetDownAuthor}<br/>
+更新时间:{$GetDownDate}<br/>
+下载次数:{$GetDownHits}<br/>
+{$GetDownAddress}<br/>
+【发表评论】<br/>
+{$GetWriteComment}
+{=GetShowComment(3,50)}
+{$GetFavorite}
+{$GetDigg}<br/>
+下:{$GetPrevDown}<br/>
+上:{$GetNextDown}<br/>
+【相关下载】<br/>
+{$GetRelatedContentsList([AutoID].,<br/>,3,50)}
+【随机下载】<br/>
+{$GetRandomContentsList([AutoID].,<br/>,3,50)}
+--------<br />
+{$GetLocation}<br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

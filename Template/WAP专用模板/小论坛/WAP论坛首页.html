@@ -1,0 +1,34 @@
+﻿<wml>
+<head>
+<meta http-equiv="Cache-Control" content="no-Cache"/>
+<meta http-equiv="Cache-Control" content="max-age=0"/>
+</head>
+<card id="main" title="{$GuestTitle}">
+<p>
+{$GetReadMessage}
+<br/>
+今日：{$TodayNum} 帖  | 昨日：{$YesterDayNum} 帖 |最高日：{$MaxDayNum} 帖 
+主题：{$TopicNum} 帖 | 帖子：{$ReplayNum} 帖 | 会员数：{$UserNum}位  | 新会员：<font color="#0066FF">{$NewUser}</font><br/>
+
+【<a href="post.asp?{$WapValue}&amp;bid={$BoardID}">发表新帖</a>】
+<br/>
+<br/>
+{$GetClubList}
+<br/>
+<input name="KeyWord" type="text" value=""/>
+<select name="searchtype">
+ <option value="1">主题</option>
+ <option value="0">作者</option>
+</select>
+<anchor>搜索<go href="index.asp?{$WapValue}" method="post">
+<postfield name="KeyWord" value="$(KeyWord)"/>
+<postfield name="searchtype" value="$(searchtype)"/>
+</go></anchor>
+<br />
+
+------------------<br/>
+<a href="index.asp?{$WapValue}">社区首页</a> | {$GetLocation}  <br/>
+{$GetCopyRight}
+</p>
+</card>
+</wml>

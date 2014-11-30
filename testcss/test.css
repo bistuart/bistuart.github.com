@@ -27,6 +27,7 @@
 	left:0px;
 	width:100%;
 	height:50px;
+	z-index:99;
 }
 
 .next_btn {
@@ -71,6 +72,7 @@
 }
 
 .face_1, .face_2, .face_3, .face_4, .face_5  {
+	z-index:10;
 	position:absolute;
 	top:80px;
 	left:0px;
@@ -98,6 +100,7 @@
 }
 
 .fangjiajing {
+	z-index:90;
 	position:absolute;
 	top:0px;
 	left:0px;
@@ -233,6 +236,7 @@
 }
 
 .zz {
+	z-index:90;
 	position:absolute;
 	top:35%;
 	left:0px;

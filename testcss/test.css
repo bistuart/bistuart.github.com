@@ -65,9 +65,9 @@
 	top:50%;
 	left:50%;
 	width:640px;
-	height:368px;
+	height:320px;
 	margin-left:-320px;
-	margin-top:0px;
+	margin-top:1px;
 	background-color:#553d2f;
 }
 
@@ -100,10 +100,14 @@
 }
 
 .fangjiajing {
-	z-index:90;
 	position:absolute;
-	top:0px;
-	left:0px;
+	top:50%;
+	left:50%;
+	width:640px;
+	height:368px;
+	margin-left:-320px;
+	margin-top:0px;
+	z-index:90;
 }
 
 .title_02 {

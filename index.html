@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/createjs.js"></script>
+		<script src="js/af.min.js"></script>
+		<script src="xiaoya.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+<body>
+	<div id='af' namespace='lib'>
+		<plug touch></plug>
+		
+    		<scene name="s1"> 
+        		<position name='title_mc' center='0' top='0'></position>
+        		<position name='pic_mc' center='0' bottom='0'></position>
+        		<position name='bg_mc' center='0' top='0'></position>
+        		<action type='init'>
+            		<next>
+                		<fragment type='stop' name='title_mc' frame='0'></fragment>
+                		<fragment type='stop' name='pic_mc' frame='0'></fragment>
+                		<fragment type='stop' name='bg_mc' frame='0'></fragment>
+            		</next>
+        		</action>
+        		<action type='show'>
+            		<next once>
+                		<fragment type='play' name='title_mc' start='start' end='step1'></fragment>
+            		</next>
+        		</action>
+        		
+        		<action type='swipe_top'>
+        			<next once>
+            			<fragment type='play' name='title_mc' start='step1' end='step2'></fragment>
+                		<fragment type='play' name='pic_mc' start='start' end='step1'></fragment>
+                		<fragment type='play' name='bg_mc' start='start' end='step1'></fragment>
+            		</next>
+            		<next jump once></next>
+            		<next once>
+        				<fragment type='play' name='title_mc' start='step2' end='end'></fragment>
+                		<fragment type='play' name='pic_mc' start='step1' end='end'></fragment>
+                		<fragment type='play' name='bg_mc' start='step1' end='end'></fragment>
+        			</next>
+        			<next exit></next>
+            	</action>
+    		</scene>
+    		
+   </div>
+</body>
+
+</html>

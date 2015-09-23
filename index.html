@@ -12,7 +12,8 @@
 
 <body>
 	<div id='af' namespace='lib'>
-		<plug touch></plug>
+		<plug touch weixin></plug>
+		<weixin title='haha' description='hehe'></weixin>
 		
     		<scene name="s1"> 
         		<position name='title_mc' center='0' top='0'></position>
@@ -29,21 +30,19 @@
             		<next once>
                 		<fragment type='play' name='title_mc' start='start' end='step1'></fragment>
             		</next>
-        		</action>
-        		
-        		<action type='swipe_top'>
-        			<next once>
+            		<next once>
             			<fragment type='play' name='title_mc' start='step1' end='step2'></fragment>
                 		<fragment type='play' name='pic_mc' start='start' end='step1'></fragment>
                 		<fragment type='play' name='bg_mc' start='start' end='step1'></fragment>
             		</next>
-            		<next jump once></next>
+        		</action>
+        		
+        		<action type='swipe_top'>
             		<next once>
         				<fragment type='play' name='title_mc' start='step2' end='end'></fragment>
                 		<fragment type='play' name='pic_mc' start='step1' end='end'></fragment>
                 		<fragment type='play' name='bg_mc' start='step1' end='end'></fragment>
         			</next>
-        			<next exit></next>
             	</action>
     		</scene>
     		
